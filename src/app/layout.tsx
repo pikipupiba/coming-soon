@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="h-full">
       {/* React 19: Document metadata in components */}
       <title>{siteConfig.company.name}</title>
       <meta name="description" content="We're creating a cutting-edge event production platform. Stay tuned for our launch!" />
@@ -47,7 +47,7 @@ export default function RootLayout({
         precedence="high"
       />
       
-      <body className="min-h-screen bg-white text-black dark:bg-black dark:text-white">
+      <body className="h-full bg-white text-black dark:bg-black dark:text-white">
         <Providers>{children}</Providers>
       </body>
     </html>

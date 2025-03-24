@@ -30,16 +30,19 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col">
+    <main className="flex flex-col h-full">
       {/* Theme Toggle Button */}
       <div className="fixed top-4 right-4 z-40">
         <ThemeToggle />
       </div>
 
-      {/* Main Content */}
-      <div className="flex-grow">
-        <HeroContent />
-        <FeatureHighlights />
+      {/* Centering Container */}
+      <div className="flex flex-col flex-grow justify-center">
+        {/* Main Content */}
+        <div className="flex flex-col items-center">
+          <HeroContent />
+          <FeatureHighlights />
+        </div>
       </div>
 
       {/* Footer */}

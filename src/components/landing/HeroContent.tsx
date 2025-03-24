@@ -11,7 +11,7 @@ const HeroContent = () => {
   const toggleContactForm = useUIStore((state) => state.toggleContactForm);
   
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-[60vh] px-4 py-20 overflow-hidden text-center">
+    <section className="relative flex flex-col items-center justify-center w-full px-4 pt-8 pb-4 overflow-hidden text-center">
       {/* Background elements */}
       <div className="absolute inset-0 -z-10 opacity-10">
         <motion.div 

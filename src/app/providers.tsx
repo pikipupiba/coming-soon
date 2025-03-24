@@ -19,7 +19,15 @@ export function Providers({ children }: ProvidersProps) {
   const themeState = useTheme();
   
   // Memoize context value to prevent unnecessary re-renders
-  const contextValue = useMemo(() => themeState, [themeState.theme]);
+  // Including all dependencies to ensure proper updates
+  const contextValue = useMemo(
+    () => ({ 
+      theme: themeState.theme, 
+      setTheme: themeState.setTheme, 
+      toggleTheme: themeState.toggleTheme 
+    }), 
+    [themeState.theme, themeState.setTheme, themeState.toggleTheme]
+  );
   
   // Apply theme class to html element
   useEffect(() => {

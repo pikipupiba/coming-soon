@@ -22,26 +22,10 @@ const FeatureHighlights = () => {
   const currentFeature = siteConfig.features[currentFeatureIndex];
   
   return (
-    <section className="relative max-w-4xl mx-auto px-4 py-16">
+    <section className="relative max-w-4xl mx-auto px-4 py-1 mt-0">
       <div className="flex flex-col items-center justify-center">
-        {/* Indicators */}
-        <div className="flex space-x-2 mb-8">
-          {siteConfig.features.map((_, index) => (
-            <button
-              key={index}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                currentFeatureIndex === index 
-                  ? 'bg-primary w-6' 
-                  : 'bg-gray-300 dark:bg-gray-700'
-              }`}
-              aria-label={`View feature ${index + 1}`}
-              onClick={() => useUIStore.getState().setFeatureIndex(index)}
-            />
-          ))}
-        </div>
-        
         {/* Feature Content */}
-        <div className="w-full min-h-[200px] relative">
+        <div className="w-full min-h-[160px] relative">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentFeatureIndex}
@@ -54,7 +38,7 @@ const FeatureHighlights = () => {
               <h3 className="text-2xl font-owners font-bold mb-4 text-black dark:text-white">
                 {currentFeature.title}
               </h3>
-              <p className="text-lg text-gray-700 dark:text-gray-300">
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
                 {currentFeature.description}
               </p>
             </motion.div>
