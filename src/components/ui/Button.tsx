@@ -6,12 +6,14 @@ import { motion, HTMLMotionProps } from 'framer-motion';
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
+// React 19: Updated interface to include ref prop explicitly
 interface ButtonProps extends HTMLMotionProps<'button'> {
   children: ReactNode;
   variant?: ButtonVariant;
   size?: ButtonSize;
   fullWidth?: boolean;
   isLoading?: boolean;
+  ref?: React.RefObject<HTMLButtonElement>;
 }
 
 const Button = ({

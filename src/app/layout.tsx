@@ -3,6 +3,7 @@ import { siteConfig } from '@/lib/config';
 import './globals.css';
 import { Providers } from './providers';
 
+// Next.js Metadata API - still works alongside React 19 document metadata
 export const metadata: Metadata = {
   title: {
     default: siteConfig.company.name,
@@ -34,6 +35,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      {/* React 19: Document metadata in components */}
+      <title>{siteConfig.company.name}</title>
+      <meta name="description" content="We're creating a cutting-edge event production platform. Stay tuned for our launch!" />
+      <meta property="og:image" content={`https://${siteConfig.company.domain}/og-image.jpg`} />
+      
+      {/* React 19: Stylesheet loading with precedence */}
+      <link 
+        rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
+        precedence="high"
+      />
+      
       <body className="min-h-screen bg-white text-black dark:bg-black dark:text-white">
         <Providers>{children}</Providers>
       </body>

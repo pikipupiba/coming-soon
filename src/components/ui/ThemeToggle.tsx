@@ -1,16 +1,36 @@
 'use client';
 
-import { useTheme } from '@/store/uiStore';
+import { useContext, useEffect, useState } from 'react';
+import { ThemeContext } from '@/app/providers';
 import { motion } from 'framer-motion';
 
 const ThemeToggle = () => {
-  const { theme, toggleTheme } = useTheme();
+  // Using useContext instead of use() for stability
+  // use() caused infinite loop issues with Zustand store
+  const { theme, toggleTheme } = useContext(ThemeContext);
   
-  // Determine the current mode based on theme state or system preference
-  const isDarkMode = theme === 'dark' || 
-    (theme === 'system' && 
-      typeof window !== 'undefined' && 
-      window.matchMedia('(prefers-color-scheme: dark)').matches);
+  // Initialize with a default value that will be consistent during SSR
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  
+  // Update dark mode state on client side only
+  useEffect(() => {
+    // Logic to determine dark mode now runs after component is mounted
+    const darkModeCheck = 
+      theme === 'dark' || 
+      (theme === 'system' && 
+        window.matchMedia('(prefers-color-scheme: dark)').matches);
+    
+    setIsDarkMode(darkModeCheck);
+    
+    // Listen for changes if using system theme
+    if (theme === 'system') {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const handleChange = () => setIsDarkMode(mediaQuery.matches);
+      
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    }
+  }, [theme]);
   
   return (
     <button
